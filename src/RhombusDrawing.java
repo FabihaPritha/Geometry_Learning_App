@@ -107,30 +107,34 @@ public class RhombusDrawing extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 int sideLength = 0;
                 double angle = 0;
-                try {
-                    if (a.getText().isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "You didn't enter Side.");
-                    }
-                    sideLength = Integer.parseInt(a.getText());
-                    if (sideLength < 0) {
-                        JOptionPane.showMessageDialog(null, "Enter a positive integer value");
+
+                    try {
+                        if (a.getText().isEmpty()) {
+                            JOptionPane.showMessageDialog(null, "You didn't enter Side.");
+                        }
+                        sideLength = Integer.parseInt(a.getText());
+                        if (sideLength < 0) {
+                            JOptionPane.showMessageDialog(null, "Enter a positive integer value");
+                        }
+
+                        if (α.getText().isEmpty()) {
+                            JOptionPane.showMessageDialog(null, "You didn't enter Angle.");
+                        }
+                        angle = Double.parseDouble(α.getText());
+                        if (angle < 0 && angle > 89) {
+                            JOptionPane.showMessageDialog(null, "Enter the angle between 0-89.");
+                        }
+
+                    } catch (NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(null, "Invalid input format");
                     }
 
-                    if (α.getText().isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "You didn't enter Angle.");
-                    }
-                    angle = Double.parseDouble(α.getText());
-                    if (angle < 0) {
-                        JOptionPane.showMessageDialog(null, "Enter a positive angle value");
-                    }
 
-                } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(null, "Invalid input format");
-                }
 
-                Graphics g = drawingPanel.getGraphics();
-                rhombusPanel.setRhombusDimensions(sideLength, angle);
-                rhombusPanel.paintComponent(g);
+                    Graphics g = drawingPanel.getGraphics();
+                    rhombusPanel.setRhombusDimensions(sideLength, angle);
+                    rhombusPanel.paintComponent(g);
+
             }
         });
 
@@ -161,8 +165,18 @@ public class RhombusDrawing extends JFrame {
 
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
+            if(sideLength>350)
+            {
+                sideLength=350;
+            } else if (sideLength<120) {
 
-            g.setColor(Color.BLACK);
+                sideLength+=110;
+            }
+            else
+            {
+                sideLength=sideLength;
+            }
+
             int centerX = 300;
             int centerY = 300;
 
@@ -179,10 +193,12 @@ public class RhombusDrawing extends JFrame {
                     (int) (centerY + sideLength * Math.sin(angle)),
                     centerY
             };
-
-            g.drawPolygon(xPoints, yPoints, 4);
+            g.setColor(Color.YELLOW);
+            g.fillPolygon(xPoints, yPoints, 4);
             g.setFont(f1);
-            g.drawString("a ="+sideLength, (int) (centerX + sideLength * Math.cos(angle)),240);
+            g.setColor(Color.BLACK);
+            g.drawString("a(Side)", (int) (centerX + sideLength * Math.cos(angle))-5,240);
+            g.setColor(Color.RED);
             g.drawLine(300,(int) (centerY - sideLength * Math.sin(angle)),centerX,(int) (centerY + sideLength * Math.sin(angle)));
             g.drawLine((int) (centerX + sideLength * Math.cos(angle)),300,(int) (centerX - sideLength * Math.cos(angle)),300);
             g.drawString("d1",(int) (centerX + sideLength * Math.cos(angle))-50,300);

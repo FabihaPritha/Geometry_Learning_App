@@ -238,11 +238,28 @@ public class Parallelogram extends JFrame {
 
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
+            int x1,y1;
 
             // Set the color and draw the rectangle
             g.setColor(Color.BLACK);
-            int x1 = 100;
-            int y1 = 300;
+            if(n1>400 && n2>700)
+            {
+                n1=400;
+                n2=700;
+            }
+            else if(n1<100 && n2<100)
+            {
+                n1=n1+200;
+                n2=n2+200;
+            }
+            else {
+                n2=n2;
+                n1=n1;
+            }
+
+                x1 = 100;
+                y1 = 500;
+
 
             int x2 = x1 + n2;
             int y2 = y1;
@@ -261,9 +278,9 @@ public class Parallelogram extends JFrame {
             g.drawLine(x1,y1,x3,y3);
             g.drawLine(x2,y2,x4,y4);
             g.drawLine(x4,y4,x4,y1);
-            g.drawString("a = "+n1,x4/2,y4+20);
+            g.drawString("a",x4/2,y4+20);
             g.drawString("h",x4+10,y4+50);
-            g.drawString("b = "+n2,200,350);
+            g.drawString("b",200,550);
             g.drawString("d1",x4+(n2-100),y4+20);
             g.drawString("d2",x4+100,y4+50);
         }

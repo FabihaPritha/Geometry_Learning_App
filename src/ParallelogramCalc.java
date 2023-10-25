@@ -89,6 +89,7 @@ public class ParallelogramCalc extends JFrame {
         a=new JTextField();
         a.setBounds(390,480,100,50);
         a.setFont(f1);
+        //final boolean editable = a.isEditable(0);
         c.add(a);
 
         tl7=new JLabel("Height: ");
@@ -124,6 +125,7 @@ public class ParallelogramCalc extends JFrame {
         tfA1= new JTextField();
         tfA1.setBounds(260,600,200,50);
         tfA1.setFont(f1);
+        tfA1.setEditable(false);
         c.add(tfA1);
 
         tl7=new JLabel("Area without height: ");
@@ -134,6 +136,7 @@ public class ParallelogramCalc extends JFrame {
         tfA2= new JTextField();
         tfA2.setBounds(810,560,200,50);
         tfA2.setFont(f1);
+        tfA2.setEditable(false);
         c.add(tfA2);
 
         tl6=new JLabel("Perimeter: ");
@@ -144,6 +147,7 @@ public class ParallelogramCalc extends JFrame {
         tfP= new JTextField();
         tfP.setBounds(810,640,200,50);
         tfP.setFont(f1);
+        tfP.setEditable(false);
         c.add(tfP);
 
         calc.addActionListener(new ActionListener() {

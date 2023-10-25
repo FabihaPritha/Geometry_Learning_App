@@ -73,7 +73,7 @@ public class Triangle extends JFrame {
 
         TrianglePanel trianglePanel = new TrianglePanel();
         JPanel drawingPanel = new JPanel();
-        drawingPanel.setBounds(350, 90, 1200, 600);
+        drawingPanel.setBounds(350, 90, 1100, 600);
         drawingPanel.setBackground(Color.LIGHT_GRAY);
         drawingPanel.add(trianglePanel);
         c.add(drawingPanel);
@@ -219,21 +219,96 @@ public class Triangle extends JFrame {
 
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
+
+
+                if ( x_1 > 900 && x_2 > 900 && x_3 > 900){
+                    x_1=x_2=x_3=850;
+                }
+                 else if( y_1>500 && y_2>500 && y_3>500)
+                {
+                    y_1=500;
+                    y_2=500;
+                    y_3=500;
+                }
+
+                 else if((Math.abs(x_1-x_2)<200) )
+                {
+                    if(Math.max(x_1,x_2)==x_2)
+                    {
+                        x_2=x_2+200;
+                    }
+                    else
+                        x_1=x_1+200;
+                } else if ((Math.abs(x_1-x_3)<200) ) {
+                    if(Math.max(x_1,x_3)==x_3)
+                    {
+                        x_3=x_3+200;
+                    }
+                    else
+                        x_1=x_1+200;
+                }
+                 else if((Math.abs(x_3-x_2)<200) )
+                {
+                    if(Math.max(x_3,x_2)==x_2)
+                    {
+                        x_2=x_2+200;
+                    }
+                    else
+                        x_3=x_3+200;
+                }
+                else if((Math.abs(y_1-y_2)<200) )
+                {
+                    if(Math.max(y_1,y_2)==y_2)
+                    {
+                        y_2=y_2+200;
+                    }
+                    else
+                        y_1=y_1+200;
+                }  else if ((Math.abs(y_1-y_3)<200) ) {
+                    if(Math.max(y_1,y_3)==y_3)
+                    {
+                        y_3=y_3+200;
+                    }
+                    else
+                        y_1=y_1+200;
+                }
+
+                 else if ((Math.abs(y_3-y_2)<200)) {
+                    if(Math.max(y_3,y_2)==y_2)
+                    {
+                        y_2=y_2+200;
+                    }
+                    else
+                        y_3=y_3+200;
+
+                }
+//                 else
+//                {
+//                    x_1=x_1;
+//                    x_2=x_2;
+//                    x_3=x_3;
+//                    y_1=y_1;
+//                    y_2=y_2;
+//                    y_3=y_3;
+//                }
                 g.setFont(f1);
                 // Set the color and draw the rectangle
                 g.setColor(Color.BLACK);
                 g.drawLine(x_1, y_1, x_2, y_2);
+                //g.drawString("a",(x_1+x_2)/2,((y_1+y_2)/2)+50);
                 g.setColor(Color.RED);
                 g.drawLine(x_2, y_2, x_3, y_3);
+                //g.drawString("b",((x_3+x_2)/2)+50,((y_3+y_2)/2)+50);
                 g.setColor(Color.BLUE);
                 g.drawLine(x_3, y_3, x_1, y_1);
+                //g.drawString("c",((x_1+x_3)/2)-50,((y_1+y_3)/2)+50);
 //                try {
 //                    g.drawLine(x_1, y_1, ((x_1 - x_2) / (x_2 - x_3)), ((y_1 - y_2) / (y_2 - y_3)));
 //                }catch (ArithmeticException ex)
 //                {}
-                g.drawString("a",(x_1+x_2)/2,((y_1+y_2)/2)+50);
-                g.drawString("b",((x_3+x_2)/2)+50,((y_3+y_2)/2)+50);
-                g.drawString("c",((x_1+x_3)/2)-50,((y_1+y_3)/2)+50);
+//                g.drawString("a",(x_1+x_2)/2,((y_1+y_2)/2)+50);
+//                g.drawString("b",((x_3+x_2)/2)+50,((y_3+y_2)/2)+50);
+//                g.drawString("c",((x_1+x_3)/2)-50,((y_1+y_3)/2)+50);
             }
 
         }

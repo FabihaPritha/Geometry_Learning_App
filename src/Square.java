@@ -163,20 +163,42 @@ public class Square extends JFrame {
 
     private class SquarePanel extends JPanel {
         private int n1;
+
         public void setSquareDimension(int n1) {
             this.n1 = n1;
 
         }
+
         public void clearSquare() {
             n1 = 0;
         }
 
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
+            if (n1>550) {
+                n1=550;
+            }
+            else if (n1<100) {
+                n1=n1+100;
+            }
+            else
+            {
+                n1=n1;
+            }
 
-            // Set the color and draw the rectangle
-            g.setColor(Color.BLACK);
-            g.drawRect(200, 100, n1, n1);
+
+            g.setColor(Color.YELLOW);
+            g.fillRect(50, 50, n1, n1);
+            g.setColor(Color.RED);
+            g.drawLine(50, 50, 50 + n1, 50 + n1);
+
+            if (n1 > 0) {
+                g.setColor(Color.RED);
+                g.setFont(f1);
+                g.drawString("a", 50 + n1 / 2, 50 - 5);
+                g.drawString("d",50+ n1/2, 50+ n1/2);
+
+            }
         }
     }
     private void showAreaCalculation() {

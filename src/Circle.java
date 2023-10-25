@@ -170,7 +170,7 @@ public class Circle extends JFrame {
 
     }
     private class CirclePanel extends JPanel {
-        static int xc = 250, yc = 250;
+        static int xc = 600, yc = 300;
         int r;
 
         int x2,y2,r2;
@@ -190,10 +190,21 @@ public class Circle extends JFrame {
         public void paint(Graphics g) {
             g.setColor(Color.BLACK);
             g.setFont(f1);
-            g.drawOval(350-r,350-r,r*2,r*2);
-            g.drawLine(350,350,350+r,350);
-            g.drawString("r = "+r,350+(r/2),320);
+            if(r>290)
+            {
+                r=290;
+            } else if (r<50) {
+                r=r+100;
 
+            }
+            else
+            {
+                r=r;
+            }
+            g.drawOval(200,10,2*r,2*r);
+//            g.drawOval(350-r,350-r,r*2,r*2);
+            g.drawLine(200+r,10+r,200+(2*r),10+r);
+            g.drawString("r",200+r+(r/2),r);
         }
 
     }

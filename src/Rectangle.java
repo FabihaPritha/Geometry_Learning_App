@@ -199,18 +199,33 @@ public class Rectangle extends JFrame {
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
 
+            if (n1>500 && n2>800) {
+                n1=500;
+                n2=1100;
+            }
+            if (n1<100 && n2<100) {
+                n1=n1+100;
+                n2=n2+100;
+
+            }
+//            else
+//            {
+//                n1=n1;
+//                n2=n2;
+//            }
+
             // Set the color and draw the rectangle
             g.setColor(Color.YELLOW);
-            g.fillRect(200, 100, n1, n2);
+            g.fillRect(90, 90, n1, n2);
             g.setColor(Color.RED);
-            g.drawLine(200,100,200+n1,100+n2);
+            g.drawLine(90,90,90+n1,90+n2);
 
             if (n1 > 0 && n2 > 0) {
                 g.setColor(Color.RED);
                 g.setFont(f1);
-                g.drawString("a="+n1, 200 + n1 / 2, 100 - 5);
-                g.drawString("b="+n2, 200 - 100, 100 + n2 / 2);
-                g.drawString("d",200+ n1/2, 100+ n2/2);
+                g.drawString("a(Width)", 90 + n1 / 2, 90 - 5);
+                g.drawString("b(Height)", 0, 90 + (n2 / 2));
+                g.drawString("d",80+ n1/2, 80+ n2/2);
             }
         }
     }
@@ -219,7 +234,7 @@ public class Rectangle extends JFrame {
         int b = Integer.parseInt(height.getText());
         int area = a * b;
 
-        String calcArea = "Area = Length × Width\n"
+        String calcArea = "Area = Height × Width\n"
                 + "    = " + a + " × " + b + "\n"
                 + "    = " + area;
 
@@ -243,7 +258,7 @@ public class Rectangle extends JFrame {
         int b = Integer.parseInt(height.getText());
         int p =2*(a+b);
 
-        String calcPeri = "Perimeter =2 X (Length + Width)\n"
+        String calcPeri = "Perimeter =2 X (Height + Width)\n"
                 + "      = 2 X" + a + " + " + b + "\n"
                 + "      = 2 X" +(a+b)+"\n"
                 +"       ="+p;
@@ -267,10 +282,10 @@ public class Rectangle extends JFrame {
     private void showDiaCalculation() {
         int a = Integer.parseInt(width.getText());
         int b = Integer.parseInt(height.getText());
-        double d =Math.sqrt((a^2)+(b^2));
+        double d =Math.sqrt((a*a)+(b*b));
         double add=(a*a)+(b*b);
 
-        String calcPeri = "Diagonal =2 X (Length + Width)\n"
+        String calcPeri = "Diagonal =√ (a^2 + b^2)\n"
                 + "      = √(" + a +"^2"+ " + " + b +"^2"+ ")\n"
                 + "      = √(" +(a*a)+"+"+(b*b)+")\n"
                 +"      =√("+add+")\n"
